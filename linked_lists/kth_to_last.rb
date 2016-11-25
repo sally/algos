@@ -32,17 +32,19 @@ end
   # Traverse the list until you get to the n-kth item, and return it.
 
 def kth_to_last_alt(head_node, k)
-  counter = 0
+  length = 0
   current_node = head_node
 
   while head_node
     current_node = current_node.next
-    counter += 1
+    length += 1
   end
+
+  raise "Input k exceeds the length of the list" if (k > length)
 
   return_node = head_node
 
-  counter.times do
+  length.times do
     return_node = return_node.next
   end
 
@@ -50,4 +52,4 @@ def kth_to_last_alt(head_node, k)
 end
 
 # Time and space complexity:
-  # Time would be O(n), because it takes n steps to traverse the linked list. 
+  # Time would be O(n), because it takes n steps to traverse the linked list, then n-k steps to traverse and return the proper element.
