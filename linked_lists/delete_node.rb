@@ -14,6 +14,8 @@ def delete_node(node_to_delete)
   end
 end
 
+# Done in O(1) time and O(1) space.
+
 # Takeaways:
 
 ## Edge cases for linked lists:
