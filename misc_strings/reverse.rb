@@ -18,3 +18,7 @@ def reverse(str)
 
   str
 end
+
+# Time and space complexity:
+  # Time is O(n). We "iterate" through the string once.
+  # Space is O(1). We create two new variables.
