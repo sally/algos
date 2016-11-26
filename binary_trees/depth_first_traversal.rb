@@ -30,7 +30,7 @@ i = g.insert_right('I')
 h = i.insert_left('H')
 
 # Preorder should return ["F", "D", "B", "A", "C", "E", "J", "G", "I", "H", "K"]
-# Inorder should return: ["A", "B", "C", "D", "E", "F", "H", "I", "G", "J", "K"]
+# Inorder should return: ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K"]
 
 # Preorder traversal:
   # Keep track of values in array
@@ -63,40 +63,46 @@ p preorder_traversal(root)
       # Add value of node to array
       # IF node has right child, then run function on child
 
-# def inorder_traversal(root, values = [])
-#   if root.left || root.right
-#     inorder_traversal(root.left, values) if root.left
-#     values << root.value
-#     inorder_traversal(root.right, values) if root.right
-#   else
-#     values << root.value
-#   end
-#
-#   values
-# end
-
-class Dummy
- @@values = []
-
-  def inorder_traversal(root)
-    p @@values
-    return unless root
-
-    if root
-      inorder_traversal(root.left)
-      @@values << root.value
-      inorder_traversal(root.right)
-    else
-      @@values << root.value
-    end
+def inorder_traversal(root, values = [])
+  if root.left || root.right
+    inorder_traversal(root.left, values) if root.left
+    values << root.value
+    inorder_traversal(root.right, values) if root.right
+  else
+    values << root.value
   end
 
-  def values
-    @@values
-  end
-
+  values
 end
 
-d = Dummy.new
-d.inorder_traversal(root)
-d.values
+p inorder_traversal(root)
+
+def postorder_traversal(root, values=[])
+  if root.left || root.right
+    values = postorder_traversal(root.left, values) if root.left
+    postorder_traversal(root.right, values) if root.right
+    values << root.value
+  else
+    values << root.value
+  end
+
+  values
+end
+
+p postorder_traversal(root)
+
+def postorder_lambda_traversal(root)
+  values = []
+
+  traverse = lambda do |start_node|
+    return unless start_node
+    traverse.call(start_node.left)
+    traverse.call(start_node.right)
+    values << start_node.value
+  end
+
+  traverse.call(root)
+  values
+end
+
+p postorder_lambda_traversal(root)
