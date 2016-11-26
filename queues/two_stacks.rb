@@ -4,6 +4,8 @@
 
 # Assume you already have a stack implementation and it gives O(1) time push and pop.
 
+#########################################
+
 class QueueOfStacks
   @@stack1 = []
   @@stack2 = []

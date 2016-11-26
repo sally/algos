@@ -2,6 +2,8 @@ require_relative 'binary_tree_node'
 
 # IC: A tree is "superbalanced" if the difference between the depths of any two leaf nodes is no greater than one.
 
+#########################################
+
 # Do a depth-first search, since this method makes it more likely that we find terminating nodes (short-circuit faster than breadth-first search)
 # Keep track of the terminating levels in an array (the node and its level)
 # If ever the terminating levels array gets to be bigger than cardinality 2, then we can short-circuit and return false
