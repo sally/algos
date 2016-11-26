@@ -109,3 +109,7 @@ def postorder_lambda_traversal(root)
 end
 
 p postorder_lambda_traversal(root)
+
+## Time and space complexity:
+  # The time is O(n), since we must visit all nodes once.
+  # Space complexity is O(1), since we only store the values array.
