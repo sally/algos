@@ -31,6 +31,7 @@ h = i.insert_left('H')
 
 # Preorder should return ["F", "D", "B", "A", "C", "E", "J", "G", "I", "H", "K"]
 # Inorder should return: ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K"]
+# Postorder should return: ["A", "C", "B", "E", "D", "H", "I", "G", "K", "J", "F"]
 
 # Preorder traversal:
   # Keep track of values in array
@@ -90,6 +91,8 @@ def postorder_traversal(root, values=[])
 end
 
 p postorder_traversal(root)
+
+# Lambda version of post-order traversal
 
 def postorder_lambda_traversal(root)
   values = []
