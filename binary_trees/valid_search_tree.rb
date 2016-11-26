@@ -6,6 +6,8 @@ require_relative 'binary_tree_node'
 
 # IC: Write a function to check that a binary tree is a valid binary search tree.
 
+#########################################
+
 ## Initial thoughts: do recursion, base case would be that we have a leaf, in which case the binary tree is valid.
   # recursive case would be that we don't have a leaf, in which case we check whether the node we're on is greater than its left value, and less than its right value
   # however, this doesn't work because of this counter example:
