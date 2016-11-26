@@ -19,7 +19,7 @@ require_relative 'binary_tree_node'
 
 root = BinaryTreeNode.new('F')
 d = root.insert_left('D')
-j = root.insert_left('J')
+j = root.insert_right('J')
 b = d.insert_left('B')
 e = d.insert_right('E')
 a = b.insert_left('A')
@@ -29,25 +29,74 @@ k = j.insert_right('K')
 i = g.insert_right('I')
 h = i.insert_left('H')
 
+# Preorder should return ["F", "D", "B", "A", "C", "E", "J", "G", "I", "H", "K"]
+# Inorder should return: ["A", "B", "C", "D", "E", "F", "H", "I", "G", "J", "K"]
+
 # Preorder traversal:
   # Keep track of values in array
   # Recursively:
     # Base case: Node has no children. Add node to values
     # Recursive case: Node has children. Add node to values and run method on left side, then run method on right side
 
-def preorder_traversal(root)
+def preorder_traversal(root, values = [])
   current_node = root
-  values = []
 
   if current_node.left || current_node.right
-    values << current_node
-    preorder_traversal(current_node.left) if current_node.left
-    preorder_traversal(current_node.right) if current_node.right
+    values << current_node.value
+    values = preorder_traversal(current_node.left, values) if current_node.left
+    preorder_traversal(current_node.right, values) if current_node.right
   else
-    values << current_node
+    values << current_node.value
   end
 
   values
 end
 
-preorder_traversal(root)
+p preorder_traversal(root)
+
+# Inorder traversal:
+  # Keep track of values in array
+  # Recursively:
+    # Base case: Node has no children. Add node to values, and return values array
+    # Recursive case:
+      # IF node has left child, then run function on child
+      # Add value of node to array
+      # IF node has right child, then run function on child
+
+# def inorder_traversal(root, values = [])
+#   if root.left || root.right
+#     inorder_traversal(root.left, values) if root.left
+#     values << root.value
+#     inorder_traversal(root.right, values) if root.right
+#   else
+#     values << root.value
+#   end
+#
+#   values
+# end
+
+class Dummy
+ @@values = []
+
+  def inorder_traversal(root)
+    p @@values
+    return unless root
+
+    if root
+      inorder_traversal(root.left)
+      @@values << root.value
+      inorder_traversal(root.right)
+    else
+      @@values << root.value
+    end
+  end
+
+  def values
+    @@values
+  end
+
+end
+
+d = Dummy.new
+d.inorder_traversal(root)
+d.values
