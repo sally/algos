@@ -30,6 +30,32 @@ def valid_search_tree(root)
   stack << [root, -Float::INFINITY, Float::INFINITY]
 
   until stack.empty?
-    
+    current_node,min_bound,max_bound = stack.pop
+
+    if current_node.value <= min_bound || current_node.value >= max_bound
+      return false
+    end
+
+    if current_node.left
+      stack << [current_node.left, min_bound, current_node.value]
+    end
+
+    if current_node.right
+      stack << [current_node.right, current_node.value, max_bound]
+    end
   end
+
+  true
 end
+
+# Example 1:
+#  1
+# / \
+#3   2
+
+root1 = BinaryTreeNode.new(1)
+three = root1.insert_left(3)
+two = root1.insert_right(2)
+
+p valid_search_tree(root1)
+# Should return false
