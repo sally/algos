@@ -38,9 +38,18 @@ def breadth_first_traversal(root)
 
   traverse = lambda do |current_node|
     return unless current_node
+    queue.unshift
     values << current_node.value
-    queue << 
+    queue = queue + [current_node.left, current_node.right]
+    traverse.call(queue.shift)
   end
+
+  traverse.call(root)
+  values
 end
 
 p breadth_first_traversal(root)
+
+## Time and space complexity:
+  # The time is O(n), since we must visit all nodes once.
+  # Space complexity is O(1), since we store the queue and the values in two variables.
