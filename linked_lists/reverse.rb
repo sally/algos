@@ -1,6 +1,6 @@
 require_relative 'linked_list_node'
 
-# Write a function for reversing a linked lis. Do it in-place.
+# IC: Write a function for reversing a linked lis. Do it in-place.
 #
 # Your function will have one input: the head of the list.
 #

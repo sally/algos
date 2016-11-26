@@ -1,4 +1,4 @@
-# Write a function to reverse a string in-place.
+# IC: Write a function to reverse a string in-place.
 
 # Recursively:
   # Initiate two pointers [keep track of index], one at the beginning and one at the end. Call them a and b respectively.

@@ -1,4 +1,6 @@
-# Write a function to find the 2nd largest element in a binary search tree.
+require_relative 'binary_tree_node'
+
+# IC: Write a function to find the 2nd largest element in a binary search tree.
 
 # Since all of the greater numbers are on the right, we just need to find the node that has the last right child
 # Base case is something of this form:

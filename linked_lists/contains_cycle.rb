@@ -1,6 +1,6 @@
 require_relative 'linked_list_node'
 
-# A cycle occurs when a node's @next points back to a previous node in the list. The linked list is no longer linear with a beginning and an end - instead, it cycles through a loop of nodes.
+# IC: A cycle occurs when a node's @next points back to a previous node in the list. The linked list is no longer linear with a beginning and an end - instead, it cycles through a loop of nodes.
 
 # Write a function contains_cycle() that takes the first node in a singly-linked list and returns a boolean indicating whether the list contains a cycle.
 

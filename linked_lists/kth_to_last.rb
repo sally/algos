@@ -1,6 +1,6 @@
 require_relative 'linked_list_node'
 
-# Write a function kth_to_last_node() that takes an integer kk and the head_node of a singly linked list, and returns the kth to last node in the list.
+# IC: Write a function kth_to_last_node() that takes an integer kk and the head_node of a singly linked list, and returns the kth to last node in the list.
 
 # Have a "walker" which is length k, with variables a and b to indicate the front and end of the walker respectively
 # Start off by placing the end of the walker 'k' down the linked list
