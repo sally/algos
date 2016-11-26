@@ -35,9 +35,6 @@ def superbalanced?(root)
         terminating_levels << current_level if terminating_levels.first != current_level
       end
     end
-
-    p nodes_to_check.map {|node| [node.first.value, node.last]}
-    p terminating_levels
   end
 
   true
@@ -97,6 +94,5 @@ g = j.insert_left('G')
 k = j.insert_right('K')
 i = g.insert_right('I')
 
-puts "-----------------------------------"
 p superbalanced?(root3)
 # Should return true
