@@ -6,6 +6,8 @@ require_relative 'linked_list_node'
 #
 # Your function should return the new head of the list.
 
+#########################################
+
 # If we are on the first node, then make a reference to the second node.
 # Then, set first node's next value equal to nil.
 # Then, initialize previous node as the first node.

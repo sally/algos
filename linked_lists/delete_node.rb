@@ -3,6 +3,8 @@ require_relative 'linked_list_node'
 # IC: Delete a node from a singly-linked list, given only a variable pointing to that node.
 # Example: Given 1 -> 2 -> 3 -> null, delete the node 2 given that target = node_with_2.
 
+#########################################
+
 def delete_node(node_to_delete)
   next_node = node_to_delete.next
 

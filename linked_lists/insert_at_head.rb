@@ -3,6 +3,8 @@
 # Input: Node which is the head of a linked list, and node to insert
 # Output: Return the head of the updated linked list
 
+#########################################
+
 def insert_node_at_head(head, node)
   return node if head.nil?
   node.next = head
