@@ -1,8 +1,8 @@
-| Data Structure | Advantages | Disadvantages |
-|----------------|------------|---------------|
-| Hash           |            |               |
-| Arrays         |            |               |
-| Linked Lists   |            |               |
-| Binary Trees   |            |               |
-| Heaps          |            |               |
-| Graphs         |            |               |
+| Data Structure | Advantages                                                                                                   | Disadvantages                                                          |
+|----------------|--------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------|
+| Hash           | - Very fast access if key is known - O(1) - Fast insertion - O(1)                                            | - Very slow access if key is unknown - Inefficient memory usage        |
+| Arrays         | - Very fast access if index known - O(1) - Sorting costs - O(n log(n)) - If sorted, search costs - O(log(n)) | - Slow insertion and deletion - O(n) - Fixed size in certain languages |
+| Linked Lists   | - Quick deletion if node is given - O(1) - Insertion after searching is cheap - O(1) - Cheap append - O(1)   | - Slow search - O(n) - Slow delete if node not given - O(n)            |
+| Binary Trees   | - Quick search - O(log(n)) - Quick insertion - O(log(n)) on avg - Quick deletion - O(log(n)) on avg          | - Deletion algorithm is complex                                        |
+| Heaps          | - Fast insertion - Fast deletion - Access to largest and smallest items                                      | - Slow access to all other items besides largest and smallest          |
+| Graphs         | - Models real-world situations                                                                               | - Some algorithms to search/insert are slow and complex                |
