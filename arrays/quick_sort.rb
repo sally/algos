@@ -186,3 +186,39 @@ p quick_sort_in_place([7,4,1,3,2,5])
 p quick_sort_in_place([])
 
 p quick_sort_in_place([4])
+
+# Implementation for quick sort non-in-place
+
+def quicksort(array) #takes an array of integers as an argument
+  if array.length <= 1
+    return array
+  else
+    pivot = array.sample
+    array.delete_at(array.index(pivot)) # remove the pivot
+    #puts "Picked pivot of: #{pivot}"
+    less = []
+    greater = []
+
+    array.each do |x|
+      if x <= pivot
+        less << x
+      else
+        greater << x
+      end
+    end
+
+    sorted_array = []
+    sorted_array << self.quicksort(less)
+    sorted_array << pivot
+    sorted_array << self.quicksort(greater)
+
+    # using Array.flatten to remove subarrays
+    sorted_array.flatten!
+  end
+end
+
+p quick_sort([7,4,1,3,2,5])
+
+p quick_sort([])
+
+p quick_sort([4])
