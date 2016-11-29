@@ -25,19 +25,53 @@
 # Note: Logistics may make it not possible for us to iterate neatly through the array if we keep the pivot in, so we can iterate it without:
   # Suppose we had the same array, [7,4,1,3,2,5], with pivot randomized to be index 3
   # We iterate the length of [7,4,1,2,5], noting that the pivot index is 3
-  # Since 7 > 3 and its index is >= pivot idx, we move it to the end and decrease pivot idx by 1
-    # Get [4,1,2,5,7], with pivot idx 2
-  # Since 4 > 3 and its index is >= pivot idx, we move it to the end and decrease pivot idx by 1
-    # Get [1,2,5,7,4], with pivot idx 1
-  # Since 1 < 3 and its index is < pivot idx, we keep it where it is
-    # Get [1,2,5,7,4], with pivot idx 1
-  # Since 2 < 3 and its index is >= pivot idx, we keep it where it is and increase pivot idx by 1
-    # Get [1,2,5,7,4], with pivot idx 2
+    # Case: num > pivot
+        # Subcase: idx < pivotIdx
+          # move num to right, decrease pivot by 1
+        # Subcase: idx > pivotIdx
+          # keep num there
+        # Subcase: idx = pivotIdx
+          # decrease pivotIdx by 1
+    # Case: num < pivot
+      # Subcase: idx > pivotIdx
+        # move num to left, increase pivot by 1
+      # Subcase: idx < pivotIdx
+        # keep num there
+      # Subcase: idx = pivotIdx
+        # increase pivotIdx by 1
+# This tells us that some of our subcases can be collapsed
+# We're ready to try!
+
 
 def quick_sort(array)
   if array.length == 1
     array
   else
-    pivot =
+    pivot_id = array.length.sample
+    pivot = array[pivot_id]
+
+    array = array - [pivot]
+
+    array.length.times do |i|
+      if array[i] < pivot
+        if i < pivot_id
+          next
+        else
+          array.unshift(array.delete_at(i))
+          pivot_id += 1
+        end
+      else
+        if i > pivot_id
+          next
+        else
+          array.push(array.delete_at(i))
+          pivot_id -= 1
+        end
+      end
+    end
+
+    return quick_sort(array[0...pivot_id]) + pivot + quick_sort(array[pivot_id+1..-1])
   end
 end
+
+p quick_sort([7,4,1,3,2,5])
