@@ -189,7 +189,7 @@ p quick_sort_in_place([4])
 
 # Implementation for quick sort non-in-place
 
-def quicksort(array) #takes an array of integers as an argument
+def quick_sort_non_ip(array) #takes an array of integers as an argument
   if array.length <= 1
     return array
   else
@@ -208,17 +208,17 @@ def quicksort(array) #takes an array of integers as an argument
     end
 
     sorted_array = []
-    sorted_array << self.quicksort(less)
+    sorted_array << quick_sort_non_ip(less)
     sorted_array << pivot
-    sorted_array << self.quicksort(greater)
+    sorted_array << quick_sort_non_ip(greater)
 
     # using Array.flatten to remove subarrays
     sorted_array.flatten!
   end
 end
 
-p quick_sort([7,4,1,3,2,5])
+p quick_sort_non_ip([7,4,1,3,2,5])
 
-p quick_sort([])
+p quick_sort_non_ip([])
 
-p quick_sort([4])
+p quick_sort_non_ip([4])
