@@ -1,4 +1,4 @@
-# Implement an algoritm to determine if a string has all unique characters.
+# Implement an algorithm to determine if a string has all unique characters.
 
 
 
