@@ -26,7 +26,7 @@ def one_away?(str1, str2)
         str1_index += 1
         str2_index += 1
       else
-        if errors == 0
+        if errors.zero?
           errors += 1
         else
           return false
@@ -43,7 +43,9 @@ def one_away?(str1, str2)
       end
     end
 
-    [str1.length, str2.length].max.times { count_errors.call(str1, str2) }
+    [str1.length, str2.length].max.times do |k|
+      return false if !count_errors.call(str1, str2)
+    end
   else
     false
   end
