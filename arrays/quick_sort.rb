@@ -46,42 +46,67 @@ require 'pry-byebug'
 
 
 def quick_sort(array)
-  if array.length == 1
-    array
+  if !array
+    []
+  elsif array.length == 1
+    return array
   else
     pivot_id = rand(array.length)
     pivot = array[pivot_id]
 
     p "The pivot is #{pivot} which is at id #{pivot_id}"
 
-    array = array - [pivot]
+    array_sans_pivot = array - [pivot]
 
     p "Here is the array without the pivot point: #{array}"
 
-    array.length.times do |i|
+    array_sans_pivot.length.times do |i|
       if array[i] < pivot
         if i < pivot_id
           next
         else
           array.unshift(array.delete_at(i))
-          pivot_id += 1
+          pivot_id += 1 if pivot_id != array.length
         end
       else
         if i > pivot_id
           next
         else
           array.push(array.delete_at(i))
-          pivot_id -= 1
+          pivot_id -= 1 if pivot_id != 0
         end
       end
     end
 
     p "Here is the result after shuffling elements around in the array: #{array}"
 
-    p "Here's what we're trying to run the two different quick_sorts on: #{array[0...pivot_id]} and #{array[pivot_id+1..-1]}"
+    p "Here's the pivot id: #{pivot_id}"
 
-    return quick_sort(array[0...pivot_id]) + pivot + quick_sort(array[pivot_id+1..-1])
+    p "Here's what we're trying to run the two different quick_sorts on: #{array[0..pivot_id]} and #{array[pivot_id+1..-1]}"
+
+    return quick_sort(array[0..pivot_id]) + [pivot] + quick_sort(array[pivot_id+1..-1])
   end
 end
 
 p quick_sort([7,4,1,3,2,5])
+
+# Erroring because we are modifying the array in place, which means indices get shuffled around and certain number never get examined.
+# Solution: Write a helper function that takes in an array and a starting index to do the comparison with the pivot
+
+def quick_sort(array)
+  if !array
+    []
+  elsif array.length == 1
+    array
+  else
+    pivot_idx = rand(array.length)
+    pivot = array[pivot_idx]
+
+    array = array - [pivot]
+    starting_idx = 0
+
+    placer = lambda do
+
+    end
+  end
+end
