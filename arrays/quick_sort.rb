@@ -146,6 +146,8 @@ def quick_sort_in_place(array)
     array
   else
     # pivot_id = rand(array.length)
+    pivot_id = rand(array.length)
+    p "We work with pivot_id #{pivot_id} which is #{array[pivot_id]}"
     current_id = 0
 
     placer = lambda do |array|
@@ -155,6 +157,7 @@ def quick_sort_in_place(array)
         else
           array.unshift(array.delete_at(current_id))
           pivot_id += 1
+          current_id += 1
         end
       elsif array[current_id] > array[pivot_id]
         if current_id > pivot_id
@@ -172,7 +175,7 @@ def quick_sort_in_place(array)
       placer.call(array)
     end
 
-    p "We call quick sort again on #{array[0...pivot_id]} and #{array[pivot_id+1..-1]}"
+    p "We call quick sort again on #{array[0...pivot_id]} + #{[array[pivot_id]]} + #{array[pivot_id+1..-1]}"
 
     return quick_sort_in_place(array[0...pivot_id]) + [array[pivot_id]] + quick_sort_in_place(array[pivot_id+1..-1])
   end # ends checking for array length
