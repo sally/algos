@@ -45,68 +45,141 @@ require 'pry-byebug'
 # We're ready to try!
 
 
-def quick_sort(array)
-  if !array
-    []
-  elsif array.length == 1
-    return array
-  else
-    pivot_id = rand(array.length)
-    pivot = array[pivot_id]
-
-    p "The pivot is #{pivot} which is at id #{pivot_id}"
-
-    array_sans_pivot = array - [pivot]
-
-    p "Here is the array without the pivot point: #{array}"
-
-    array_sans_pivot.length.times do |i|
-      if array[i] < pivot
-        if i < pivot_id
-          next
-        else
-          array.unshift(array.delete_at(i))
-          pivot_id += 1 if pivot_id != array.length
-        end
-      else
-        if i > pivot_id
-          next
-        else
-          array.push(array.delete_at(i))
-          pivot_id -= 1 if pivot_id != 0
-        end
-      end
-    end
-
-    p "Here is the result after shuffling elements around in the array: #{array}"
-
-    p "Here's the pivot id: #{pivot_id}"
-
-    p "Here's what we're trying to run the two different quick_sorts on: #{array[0..pivot_id]} and #{array[pivot_id+1..-1]}"
-
-    return quick_sort(array[0..pivot_id]) + [pivot] + quick_sort(array[pivot_id+1..-1])
-  end
-end
-
-p quick_sort([7,4,1,3,2,5])
+# def quick_sort(array)
+#   if !array
+#     []
+#   elsif array.length == 1
+#     return array
+#   else
+#     pivot_id = rand(array.length)
+#     pivot = array[pivot_id]
+#
+#     p "The pivot is #{pivot} which is at id #{pivot_id}"
+#
+#     array_sans_pivot = array - [pivot]
+#
+#     p "Here is the array without the pivot point: #{array}"
+#
+#     array_sans_pivot.length.times do |i|
+#       if array[i] < pivot
+#         if i < pivot_id
+#           next
+#         else
+#           array.unshift(array.delete_at(i))
+#           pivot_id += 1 if pivot_id != array.length
+#         end
+#       else
+#         if i > pivot_id
+#           next
+#         else
+#           array.push(array.delete_at(i))
+#           pivot_id -= 1 if pivot_id != 0
+#         end
+#       end
+#     end
+#
+#     p "Here is the result after shuffling elements around in the array: #{array}"
+#
+#     p "Here's the pivot id: #{pivot_id}"
+#
+#     p "Here's what we're trying to run the two different quick_sorts on: #{array[0..pivot_id]} and #{array[pivot_id+1..-1]}"
+#
+#     return quick_sort(array[0..pivot_id]) + [pivot] + quick_sort(array[pivot_id+1..-1])
+#   end
+# end
+#
+# p quick_sort([7,4,1,3,2,5])
 
 # Erroring because we are modifying the array in place, which means indices get shuffled around and certain number never get examined.
 # Solution: Write a helper function that takes in an array and a starting index to do the comparison with the pivot
 
-def quick_sort(array)
-  if !array
-    []
-  elsif array.length == 1
+# The only case that we increase the current ID is not moving anything, or  moving something up front
+
+# def quick_sort(array)
+#   # first check if array is empty or singleton
+#   if array.nil? || array.empty?
+#     Array.new
+#   elsif array.length == 1
+#     array
+#   else
+#     pivot_idx = rand(array.length).floor
+#     pivot = array[pivot_idx]
+#
+#     p "Pivot element is #{pivot} and idx #{pivot_idx}"
+#
+#     array = array - [pivot]
+#
+#     current_idx = 0
+#
+#     placer = lambda do |array|
+#       if pivot < array[current_idx]
+#         if pivot_idx >= current_idx
+#           array.unshift(array.delete_at(current_idx))
+#           pivot_idx -= 1 if pivot_idx != array.length
+#         else
+#           current_idx += 1
+#         end
+#       else
+#         if pivot_idx  >= current_idx
+#           array.push(array.delete_at(current_idx))
+#           pivot_idx -= 1 if pivot_idx != 0
+#         else
+#           current_idx += 1
+#         end
+#       end
+#     end
+#
+#     array.length.times do
+#       placer.call(array)
+#     end
+#
+#     p "Result of calling placer: #{array}"
+#     p "Here's the resulting pivot id: #{pivot_idx}"
+#     p "Here are the arrays we'll recursively call QS on #{array[0..pivot_idx]} and #{array[pivot_idx+1..-1]}"
+#
+#     return quick_sort(array[0..pivot_idx]) + [pivot] + quick_sort(array[pivot_idx+1..-1])
+#   end
+# end
+
+def quick_sort_in_place(array)
+  if array.length <= 1
     array
   else
-    pivot_idx = rand(array.length)
-    pivot = array[pivot_idx]
+    # pivot_id = rand(array.length)
+    current_id = 0
 
-    array = array - [pivot]
-    starting_idx = 0
+    placer = lambda do |array|
+      if array[current_id] < array[pivot_id]
+        if current_id < pivot_id
+          current_id += 1
+        else
+          array.unshift(array.delete_at(current_id))
+          pivot_id += 1
+        end
+      elsif array[current_id] > array[pivot_id]
+        if current_id > pivot_id
+          current_id += 1
+        else
+          array.push(array.delete_at(current_id))
+          pivot_id -= 1
+        end
+      else
+        current_id += 1
+      end
+    end # ends placer
 
-    placer = lambda do
-
+    array.length.times do
+      placer.call(array)
     end
-  end
-end
+
+    p "We call quick sort again on #{array[0...pivot_id]} and #{array[pivot_id+1..-1]}"
+
+    return quick_sort_in_place(array[0...pivot_id]) + [array[pivot_id]] + quick_sort_in_place(array[pivot_id+1..-1])
+  end # ends checking for array length
+end # ends def
+
+p quick_sort_in_place([7,4,1,3,2,5])
+
+p quick_sort_in_place([])
+
+p quick_sort_in_place([4])
