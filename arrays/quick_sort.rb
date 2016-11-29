@@ -1,3 +1,5 @@
+require 'pry-byebug'
+
 # Quick sort algorithm:
 
 # Pick a random element in the array, call it the pivot
@@ -47,10 +49,14 @@ def quick_sort(array)
   if array.length == 1
     array
   else
-    pivot_id = array.length.sample
+    pivot_id = rand(array.length)
     pivot = array[pivot_id]
 
+    p "The pivot is #{pivot} which is at id #{pivot_id}"
+
     array = array - [pivot]
+
+    p "Here is the array without the pivot point: #{array}"
 
     array.length.times do |i|
       if array[i] < pivot
@@ -69,6 +75,10 @@ def quick_sort(array)
         end
       end
     end
+
+    p "Here is the result after shuffling elements around in the array: #{array}"
+
+    p "Here's what we're trying to run the two different quick_sorts on: #{array[0...pivot_id]} and #{array[pivot_id+1..-1]}"
 
     return quick_sort(array[0...pivot_id]) + pivot + quick_sort(array[pivot_id+1..-1])
   end
