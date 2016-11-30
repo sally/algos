@@ -3,7 +3,6 @@
 # Write code to remove duplicates from an unsorted linked list.
 
 # Follow ups:
-# What if it were sorted?
 # How would you solve this problem if a temporary buffer is not allowed?
 
 ############################################
@@ -41,3 +40,6 @@ end
 # Reassign current_node to previous_node's .next
 
 # Note: If we want to return the head, then we do so by storing head in another variable and returning it at the very end.
+
+# Time complexity: O(n), we must traverse the entire linked list to scour for duplicates.
+# Space complexity: Also O(n), we have to (at worst) store as many key/value pairs as there are linked list nodes.
