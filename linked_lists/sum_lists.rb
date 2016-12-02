@@ -1,10 +1,3 @@
-Get Started!
-
-    1. Paste your code, then name it on the right, or drag & drop a file in.
-
-    2. Share your link! (https://kobra.io/#/e/-KXhGqlcHBtsTUKYtPtI)
-
-
 # CTCI: Sum Lists
 
 # You have two numbers represented by a linked list, where each node contains a single digit. The digits are stored in reverse order, such that the 1's digit is at the head of the list. Write a function that adds the two numbers and returns the sum as a linked list.
@@ -63,7 +56,6 @@ def sum_lists(head1, head2)
     until head1_current.nil? && head2_current.nil?
         current_sum = head1_current + head2_current
         overflow_num = max(0, current_sum - 10)
-        # unfinished~ 11/30/16 at 2:35PM
-        # current_sum =
+        current_sum =
     end
 end
