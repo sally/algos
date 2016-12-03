@@ -8,6 +8,4 @@
 
 ###################################
 
-# Must do at least one iteration, since the last number of the array could be part of the longest subarray we are looking for.
-
 # 
