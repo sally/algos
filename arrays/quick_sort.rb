@@ -95,52 +95,6 @@ require 'pry-byebug'
 
 # The only case that we increase the current ID is not moving anything, or  moving something up front
 
-# def quick_sort(array)
-#   # first check if array is empty or singleton
-#   if array.nil? || array.empty?
-#     Array.new
-#   elsif array.length == 1
-#     array
-#   else
-#     pivot_idx = rand(array.length).floor
-#     pivot = array[pivot_idx]
-#
-#     p "Pivot element is #{pivot} and idx #{pivot_idx}"
-#
-#     array = array - [pivot]
-#
-#     current_idx = 0
-#
-#     placer = lambda do |array|
-#       if pivot < array[current_idx]
-#         if pivot_idx >= current_idx
-#           array.unshift(array.delete_at(current_idx))
-#           pivot_idx -= 1 if pivot_idx != array.length
-#         else
-#           current_idx += 1
-#         end
-#       else
-#         if pivot_idx  >= current_idx
-#           array.push(array.delete_at(current_idx))
-#           pivot_idx -= 1 if pivot_idx != 0
-#         else
-#           current_idx += 1
-#         end
-#       end
-#     end
-#
-#     array.length.times do
-#       placer.call(array)
-#     end
-#
-#     p "Result of calling placer: #{array}"
-#     p "Here's the resulting pivot id: #{pivot_idx}"
-#     p "Here are the arrays we'll recursively call QS on #{array[0..pivot_idx]} and #{array[pivot_idx+1..-1]}"
-#
-#     return quick_sort(array[0..pivot_idx]) + [pivot] + quick_sort(array[pivot_idx+1..-1])
-#   end
-# end
-
 def quick_sort_in_place(array)
   if array.length <= 1
     array
