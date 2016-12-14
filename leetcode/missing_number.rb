@@ -89,4 +89,26 @@
 # Note: Had an idea about getting the length of the array and using it to calculate the sum :
 # Formula for sum of numbers from 1 to n is n(n+1)/2
 # Thought that this would be O(n^2)...
-# Revising of thoughts reveals that
+# Revising of thoughts reveals that, after asking Michael, length is a property that is stored upon modification of an array, so retrieving it is O(1).
+
+def missing_number(nums)
+  length = nums.length
+
+  sum = (length * (length + 1)) / 2
+
+  nums.each do |num|
+    sum -= num
+  end
+
+  sum
+end
+
+nums = [0,1,3]
+nums2 = [0]
+nums3 = [1]
+nums4 = [1,0]
+
+p missing_number(nums)
+p missing_number(nums2)
+p missing_number(nums3)
+p missing_number(nums4)
