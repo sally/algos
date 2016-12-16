@@ -14,19 +14,24 @@
 
 # Initialize a counter that only goes up to the length of the array - once we have done this many operations of skipping or moving zeros, stop iterating
 
-def move_zeroes(array)
-  counter = 0
-  length = array.length
+def move_zeroes(a)
+  operations = 0
+  index = 0
+  length = a.length
 
-  array.each_with_index do |num, index|
-    break if counter == length
-    if num.zero?
-      array.push(array.delete_at(index))
-      counter += 1
+  until operations == length
+    if a[index].zero?
+      a.push(a.delete_at(index))
+      operations += 1
     else
-      counter += 1
+      index += 1
+      operations += 1
     end
   end
 end
 
-p move_zeroes([0,1,0,3,12])
+array = [0,1,0,3,12]
+
+move_zeroes(array)
+
+p array
