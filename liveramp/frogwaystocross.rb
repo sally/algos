@@ -20,5 +20,13 @@
       #   q, which is the number to mod by
 
 def ways_to_jump(s,k,q)
+  ways_to_jump_to = [1] + [0] * k
 
+  (1..k+1).each do |j|
+    s.each do |step_size|
+      if step_size <= j
+        ways_to_jump_to[j] = (ways_to_jump_to[j] + ways_to_jump_to[j - step_size]) % q
+      end
+    end
+  end
 end
