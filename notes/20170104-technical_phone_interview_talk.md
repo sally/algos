@@ -87,9 +87,21 @@
 
 ## Slide 11
 
+**Title**: A Better Interview
+
+## Slide 12
+
 **Title**: Resources to Prepare
 
+* Cracking the Coding Interview
 
+* Codility (timed practice problems, in-browser IDE)
+
+* HackerRank
+
+* Codewars
+
+* You + your peers!
 
 ## Slide 12
 
