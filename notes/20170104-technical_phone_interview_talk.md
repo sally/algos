@@ -103,6 +103,6 @@
 
 * You + your peers!
 
-## Slide 12
+## Slide 13
 
 "After drawing on data from thousands of technical interviews, it's become clear to us that technical interviewing is a process whose results are nondeterministic and often arbitrary. Technical interviewing is a numbers game."
