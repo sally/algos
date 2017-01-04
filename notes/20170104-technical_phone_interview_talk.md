@@ -16,6 +16,7 @@
 
   * technical background, résumé quizzing
   * discuss engineering position at company
+  * your questions for interviewer (may be at end)
 
 * Technical (~50-80 min)
 
@@ -87,6 +88,8 @@
 ## Slide 11
 
 **Title**: Resources to Prepare
+
+
 
 ## Slide 12
 
