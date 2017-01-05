@@ -1,0 +1,111 @@
+*******************
+** BAD INTERVIEW **
+*******************
+
+J: Ok, so here's the problem. I've copy and pasted in the collabedit.
+
+S: Ok... Um.... I guess I'll start by writing the method name... and.. um... (read code out loud). Ok, I think I'm done.
+
+J: Um, ok. Could you maybe describe what you've written there in the body of the function? You're going in the right direction. Are you sure it's going to work?
+
+S: Yeah, I mean,
+
+Well, that here is an array, which is empty. And then I'm iterating through the array here, calculating every possible difference between two elements in the array, and then returning the smallest number. *
+
+J: Is that what the question is asking you to do?
+
+S: Um... Well in the example, it just returns the greatest difference between any two numbers, right?
+
+J: Right, maybe this would clarify. In this example that I pasted,
+
+[10, 7, 5, 8, 11, 0]
+
+the return value would still be 6 even though the greatest difference between any two values is 11, 
+
+S: Ok, so you want great difference while going forward? I'm not sure what more I can do, I think my function will still get it.
+
+J: Ok, then. Well, thank you.
+
+S: Alright, thank you.
+
+********************
+** GOOD INTERVIEW **
+********************
+
+J: Ok, so here's the problem. I've copy and pasted it in the collabedit.
+
+S: Ok, ~read and paraphrase question~. So, if I'm understanding correctly, we basically want to take in an array and return the maximum difference you can get when you subtract a value in the array from a value that appears after it, index-wise.
+
+J: That's right.
+
+S: Ok, I see. So, for example, if the last element of this array here were 0, then we would still return 6 because 0 - 11 is -11, and 11 - 5 = 6 is still bigger than that.
+
+[10, 7, 5, 8, 11, 0]
+
+J: Yes, that's correct.
+
+S: Ok. Should I be considering the case where the array is empty or has a non-numeric value in it?
+
+J: For the sake of simplicity, let's say that you can assume that the array is non-empty and has all non-negative integer values.
+
+S: What if the array has only one value in it? Then we can't well calculate profit.
+
+J: You should definitely consider that case.
+
+S: Alright, then. I'm going to write some notes here for myself to make sure I've got the right idea.
+
+J: Please, go ahead.
+
+S: ~pseudocodes~
+
+I already see that I might have to treat an edge case here with the last element of the array, depending on how the calculation for retrieving the sub array mentioned on line X turns out. I think I'm done with my preliminary commentary, and I'm going to go on and write the method.
+
+J: Okay, great.
+
+S: Okay, great.
+
+~writes method~
+
+I'm going to go ahead and trace through my code with the given example, now.
+
+J: Before you do that, can you notice something very obviously buggy with the code?
+
+S: Let me take a look. Ah yes, I need to return the value once my iterations are complete. Thank you.
+
+J: No problem. Go ahead.
+
+S: Ok, so ~goes through the example~
+
+J: Great. And what is the run time of this script?
+
+S: Well, as for time complexity, since we are doing one additional iteration per iteration, it will be O(N^2). As for space complexity, we are only storing an integer, not a data structure whose size depends on the input array, so it will be O(1).
+
+J: Good. What are your thoughts on the efficiency of the method?
+
+S: Well, the space complexity can't be improved. But the time complexity O(N^2) is very... not desirable. I'm wondering if there's a faster solution that abuses the fact that we only need look forward in the array while calculating differences.
+
+J: There is an O(N) way to do it.
+
+S: Ok. Let me think - We're using a greedy method to keep track of the maximum profit so far. If we want to get the max profit in just one iteration, we'll probably need to keep track of additional things, maybe the minimum and maximum values so far. Do you have any thoughts on this strategy?
+
+J: You're on the right track. Think about which variables exactly you need to keep track of.
+
+S: Ok. So, at each step of the iteration, our maximum profit so far is either the same as the max profit from the last step, or what we get from subtracting the smallest price from the current price we've seen.
+
+J: That's precisely right.
+
+S: Ok, so we'll only need to keep track of the lowest price we've seen so far, the maximum profit so far. Then for every step in the iteration, we just see if we can get a better profit by subtracting the lowest price from the current price, as I said.
+
+J: Ok, that's the right idea. Can you try and write the method again using this approach?
+
+S: Sure. I'll leave our previous work up here. ~pseudocode and code~
+
+J: Good.
+
+S: Should I run through it with the example?
+
+J: No, we're just about out of time. If you don't have any other questions for me, we'll be in touch. Is that fine with you?
+
+S: Yes, thanks so much for your time.
+
+J: Thank you.
