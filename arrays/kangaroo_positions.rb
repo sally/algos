@@ -1,3 +1,5 @@
+# Source: HackerRank https://www.hackerrank.com/challenges/kangaroo
+
 #
 # Two kangaroos are on an x-axis traveling in a positive direction. (i.e, toward positive infinity)
 # Kangaroo 1 starts hopping at position x1 @ v1 meter/jump and kangaroo starts at position x2 @ v2 meters/jump
