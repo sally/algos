@@ -1,3 +1,5 @@
+# Source: Leetcode
+
 # Intersection of Two Arrays
 
 # Given two arrays, write a function to compute their intersection.
@@ -38,4 +40,3 @@ end
 # Follow-Ups:
   # What if the given array is already sorted? How to optimize your algorithm?
   # What if num1's size is small compared to num2's size? Which algorithm is better?
-  
