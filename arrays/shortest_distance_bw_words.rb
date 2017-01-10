@@ -1,4 +1,4 @@
-require_relative 'minimal_differences_bw_sorted'
+require_relative 'minimal_differences_between_sorted'
 
 # Source: [Leetcode](https://tonycao.gitbooks.io/leetcode-locked/content/LeetCode%20Locked/c1.4.html)
 #
@@ -35,3 +35,29 @@ def find_smallest_difference(nums)
 
   smallest_difference
 end
+
+def shortest_distance(words, word1, word2)
+  indices_hash = make_indices_hash(words)
+
+  if word1 == word2
+    return find_smallest_difference(indices_hash[word1])
+  end
+
+  minimal_differences_bw_sorted(indices_hash[word1], indices_hash[word2])
+end
+
+p shortest_distance(["practice", "makes", "perfect", "coding", "makes"], "coding", "practice")
+# => returns 3
+
+p shortest_distance(["practice", "makes", "perfect", "coding", "makes"], "makes", "coding")
+# => returns 1
+
+p shortest_distance(["practice", "makes", "perfect", "coding", "makes"], "makes", "makes")
+# => returns 3
+
+# big o analysis:
+  # making indices hash is O(N), space is also O(N)
+  # finding smallest distance b/w any two elements in same array is O(N)
+  # finding minimal difference between two sorted arrays is O(M+P), where M is length of first array, P is length of second array
+  # but M and P are both <= N
+  # hence time and space complexity are both O(N)
