@@ -11,3 +11,13 @@ require_relative 'minimal_differences_bw_sorted'
 # idea: create indices hash, keys are words and values are arrays of indices
 # find shorest distance between 2 numbers in 2 sorted arrays
 # if two words are equal, then problem becomes finding the shortest distance between two distinct numbers in array
+
+def make_indices_hash(words)
+  indices_hash = Hash.new {|hash, key| hash[key] = []}
+
+  for k in 0...words.length do
+    indices_hash[words[k]] << k
+  end
+
+  indices_hash
+end
