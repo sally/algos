@@ -52,7 +52,7 @@ def largest_region(matrix)
 
   largest_region_size = 0
 
-  visited = Array.new(rows, Array.new(columns, false))
+  visited = Array.new(rows) { Array.new(columns) { false } }
 
   for i in 0...rows do
     for j in 0...columns do
