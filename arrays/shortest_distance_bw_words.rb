@@ -54,3 +54,10 @@ p shortest_distance(["practice", "makes", "perfect", "coding", "makes"], "makes"
 
 p shortest_distance(["practice", "makes", "perfect", "coding", "makes"], "makes", "makes")
 # => returns 3
+
+# big o analysis:
+  # making indices hash is O(N), space is also O(N)
+  # finding smallest distance b/w any two elements in same array is O(N)
+  # finding minimal difference between two sorted arrays is O(M+P), where M is length of first array, P is length of second array
+  # but M and P are both <= N
+  # hence time and space complexity are both O(N)
