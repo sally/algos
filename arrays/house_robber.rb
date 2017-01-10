@@ -22,5 +22,5 @@
 # => holds maximum so far at position i
 # => S[i] is calculated iteratively
   # => S[i] = max(S[i-2], S[i-3]) + A[i]
-# initialized as S[1] = A[0], S[2] = A[1]
-# final result is max(S[N], S[N-1]), where N is # of elements in A
+# initialized as S[0] = A[0], S[1] = A[1]
+# final result is max(S[N-1], S[N-2]), where N is # of elements in A
