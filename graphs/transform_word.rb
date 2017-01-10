@@ -189,10 +189,19 @@ def transform_word(dictionary, word1, word2)
 end
 
 p transform_word(['cat', 'bat', 'bet', 'bed', 'at', 'ad', 'ed'], 'cat', 'bed')
+# => ["cat", "bat", "bet", "bed"]
 
 p transform_word(['cat', 'bat', 'bed', 'at', 'ad', 'ed'], 'cat', 'bed')
+# => ["cat", "at", "ad", "ed", "bed"]
 
 p transform_word(['cat', 'bat', 'bed', 'ad', 'ed'], 'cat', 'bed')
+# => []
+
+p transform_word(['toon', 'poon', 'plee', 'same', 'poie', 'plea', 'plie', 'poin'], 'toon', 'plea')
+# => ["toon", "poon", "poin", "poie", "plie", "plee", "plea"]
+
+p transform_word(['toon', 'poon', 'plee', 'same', 'poie', 'plea', 'plie', 'poin'], 'plee', 'poie')
+# => ["plee", "plie", "poie"]
 
 # big o analysis:
 # I'll just do some big O analysis for the separate components of this problem.
