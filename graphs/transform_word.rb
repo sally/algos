@@ -64,3 +64,65 @@ def graphify_dictionary(dictionary)
 end
 
 p graphify_dictionary(['cat', 'bat', 'bet', 'bed', 'at', 'ad', 'ed'])
+
+# utility function to insert into a priority queue (inserting into a min heap)
+def insert_into_p_queue(queue, word_info)
+  queue << word_info
+  percolate_up_by_distance(queue, queue.length - 1)
+end
+
+def percolate_up_by_distance(queue, index)
+  while index > 1 && queue[index][:distance] < queue[(index/2)][:distance]
+    queue[index], queue[(index / 2)] = queue[(index / 2)], queue[index]
+    index = (index / 2)
+  end
+
+  queue
+end
+
+def extract_from_p_queue(queue)
+  info_to_return = queue[1]
+
+  if queue.length > 2
+    queue[1] = queue.pop
+    percolate_down_by_distance(queue, 1)
+  else
+    queue.pop
+  end
+
+  info_to_return
+end
+
+def percolate_down_by_distance(queue, index)
+  while index < queue.length - 1
+    if queue[index*2] && queue[index*2 + 1]
+      if queue[index*2][:distance] < queue[index][:distance] && queue[index*2][:distance] <= queue[index*2 + 1][:distance]
+        queue[index*2], queue[index] = queue[index], queue[index*2]
+        index = index*2
+      elsif queue[index*2 + 1][:distance] < queue[index][:distance] && queue[index*2 + 1][:distance] < queue[index*2][:distance]
+        queue[index*2 + 1], queue[index] = queue[index], queue[index*2 + 1]
+        index = index*2 + 1
+      else
+        break
+      end
+    elsif queue[index*2] && !queue[index*2 + 1] && queue[index*2][:distance] < queue[index][:distance]
+      queue[index*2], queue[index] = queue[index], queue[index*2]
+      index = index*2
+    elsif !queue[index*2] && queue[index*2 + 1] && queue[index*2 + 1][:distance] < queue[index][:distance]
+      queue[index*2 + 1], queue[index] = queue[index], queue[index*2 + 1]
+      index = index*2 + 1
+    else
+      break
+    end
+  end
+
+  queue
+end
+
+p sample_queue = [nil, {word: 'bat', distance: 1}, {word: 'bed', distance: 3}]
+
+p insert_into_p_queue(sample_queue, {word: 'bet', distance: 2})
+p insert_into_p_queue(sample_queue, {word: 'cat', distance: 0})
+p extract_from_p_queue(sample_queue)
+
+p sample_queue
