@@ -184,6 +184,10 @@ end
 
 p transform_word(['cat', 'bat', 'bet', 'bed', 'at', 'ad', 'ed'], 'cat', 'bed')
 
+p transform_word(['cat', 'bat', 'bed', 'at', 'ad', 'ed'], 'cat', 'bed')
+
+p transform_word(['cat', 'bat', 'bed', 'ad', 'ed'], 'cat', 'bed')
+
 # big o analysis:
 # I'll just do some big O analysis for the separate components of this problem.
 # Inserting into a min/max heap: O(logN)
