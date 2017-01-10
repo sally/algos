@@ -183,3 +183,19 @@ def transform_word(dictionary, word1, word2)
 end
 
 p transform_word(['cat', 'bat', 'bet', 'bed', 'at', 'ad', 'ed'], 'cat', 'bed')
+
+# big o analysis:
+# I'll just do some big O analysis for the separate components of this problem.
+# Inserting into a min/max heap: O(logN)
+# Extracting from a min/max heap: O(logN)
+
+# dijkstra's algorithm big O is O(E + Vlog(V)), where E is edges, V is vertices
+  # E because we must loop through all of the edges worst case
+  # Vlog(V) for priority queue bookkeeping
+
+# building edge graph for dictionary: suppose V is the number of vertices
+  # then run time is O(V^2)
+  # space complexity is also O(V^2)
+
+# future question to consider
+# what if target word is at the last 2 units of edit distance of any word away?
