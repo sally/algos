@@ -21,3 +21,17 @@ def make_indices_hash(words)
 
   indices_hash
 end
+
+def find_smallest_difference(nums)
+  raise "Please enter an array with more than one number to find the smallest difference between two distinct numbers in an array." if nums.length < 2
+
+  smallest_difference = Float::INFINITY
+
+  for k in 0...nums.length do
+    break if k == nums.length - 1
+
+    smallest_difference = [smallest_difference, (nums[k] - nums[k+1]).abs].min
+  end
+
+  smallest_difference
+end
