@@ -126,3 +126,60 @@ p insert_into_p_queue(sample_queue, {word: 'cat', distance: 0})
 p extract_from_p_queue(sample_queue)
 
 p sample_queue
+
+# dijkstra's to find shortest path between word1 and word2
+def transform_word(dictionary, word1, word2)
+  path = []
+
+  edges = graphify_dictionary(dictionary)
+
+  exhausted_words = []
+
+  # entries in the priority queue are of the form: {word: 'cat', distance: 0}
+  priority_queue = [nil]
+  priority_queue << {word: word1, distance: 0, previous_word: nil}
+
+  until priority_queue.length == 1
+    current_word_info = extract_from_p_queue(priority_queue)
+    current_word = current_word_info[:word]
+    current_distance = current_word_info[:distance]
+
+    adjacent_words = edges[current_word]
+
+    for k in (0...adjacent_words.length) do
+      if adjacent_words[k] == word2
+        path.unshift(current_word, word2)
+        previous_word = current_word_info[:previous_word]
+
+        while previous_word
+          path.unshift(previous_word)
+          previous_word = exhausted_words.find{|word_info| word_info[:word] == previous_word}[:previous_word]
+        end
+
+        return path
+      end
+
+      if exhausted_words.map{|word_info| word_info[:word]}.include?(adjacent_words[k])
+        next
+      end
+
+      if priority_queue[1..-1].map{|word_info| word_info[:word]}.include?(adjacent_words[k])
+        adjacent_word_info = priority_queue[1..-1].find {|word_info| word_info[:word] = adjacent_words[k]}
+
+        if adjacent_word_info[:distance] > current_distance + 1
+          adjacent_word_index = priority_queue.index(adjacent_word_info)
+          priority_queue[adjacent_word_index] = {word: adjacent_word_info[:word], distance: current_distance + 1, previous_word: current_word}
+          percolate_up_by_distance(priority_queue, adjacent_word_index)
+        end
+      else
+        insert_into_p_queue(priority_queue, {word: adjacent_words[k], distance: current_distance + 1, previous_word: current_word})
+      end
+    end
+
+    exhausted_words << current_word_info
+  end
+
+  path
+end
+
+p transform_word(['cat', 'bat', 'bet', 'bed', 'at', 'ad', 'ed'], 'cat', 'bed')
