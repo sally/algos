@@ -4,38 +4,65 @@
 
 #####################
 
-# Note: The problem might be able to be boiled down to just finding the largest three integers, since this will return the highest product.
+# O(N) solution. Keep track of the highest product of 2, lowest product of 2, highest number, lowest number, and highest product of 3 so far.
+# Keeping track of the lowest product of 2 and the lowest number account for if the highest product of three involves negative numbers
 
-# Toy example:
+# idea:
+  # initialize highest as the maximum of the first two numbers
+  # initialize lowest as the minimum of the first two numbers
+  # initialize product of highest 2 as the product of the first 2 numbers
+  # initialize product of lowest 2 as the product of the first 2 numbers
+  # initialize highest product of 3 as the product of the first 3 numbers
 
-# [2, 6, 5, 7, -1, 10]
+  # for k in array:
+    # update highest product of 3
+    # update highest product of 2
+    # update lowest product of 2
+    # update highest
+    # update lowest
 
-# Then the highest product should be 10*7*6.
+  # return highest product of 3
 
-# Naive approach: Calculate all possible products that can be made by three integers from the array, and then return the maximum.
-# This solution is O(N^3).
+def highest_product_of_three(array)
+  raise "Please enter an array with at least 3 elements." if array.length < 3
 
-# Possible refinement:
+  highest_product_of_2 = array[0] * array[1]
+  lowest_product_of_2 = array[0] * array[1]
 
-# Keep track of a "maximum so far" element that allows us to iterate once,
-  # also keep track of the different variables that allow us to create that maximum so far.
+  highest = [array[0], array[1]].max
+  lowest = [array[0], array[1]].max
 
-# Example:
-# For our array [2,6,5,7,-1,10]
+  highest_product_of_3 = array[0] * array[1] * array[2]
 
-# Initialize the variables a,b,c as 2,6,5 respectively, with a being the smallest (can use a min heap)
-# maximum so far is a*b*c
-# While iterating:
-  # @2: variables a,b,c and max stay the same
-  # @6: variables a,b,c and max stay the same
-  # @5: variables a,b,c and max stay the same
-  # @7: change maximum so far to be the maximum between max so far divided by the minimum * 7, vs max so far
-    # it changes to 7*5*6, compute new min to be 5
-  # @-1: change maximum so far to be the maximum between max so far divided by the minimum * -1, vs max so far
-    # max so far stays 7*5*6
-  # @10: change maximum so far to be the maximum between max so far divided by the minimum * 10, vs max so far
-    # max so far changes to 10*7*6, compute new min to be 6
-# done iterating, return max so far
+  for k in 2...array.length do
+    highest_product_of_3 = [
+                            highest_product_of_3,
+                            highest_product_of_2 * array[k],
+                            lowest_product_of_2 * array[k]
+                            ].max
 
-# Time complexity: One iteration, O(n) 
-# Space complexity: Need to store three extra variables (possibly in a min heap of size 3),
+
+    highest_product_of_2 = [
+                            highest_product_of_2,
+                            array[k] * highest,
+                            array[k] * lowest
+                            ].max
+
+    lowest_product_of_2 = [
+                            lowest_product_of_2,
+                            array[k] * highest,
+                            array[k] * lowest
+                          ].min
+
+    highest = [highest, array[k]].max
+
+    lowest = [lowest, array[k]].min
+  end
+
+  highest_product_of_3
+end
+
+array1 = [-10, -10, 1, 3, 2]
+
+p highest_product_of_three(array1)
+# => returns 300
