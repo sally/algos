@@ -1,4 +1,5 @@
 require_relative 'binary_tree_node'
+require_relative 'depth_first_traversal_ii'
 
 # Start at the root and recursively call insert on the left or ride node depending on the current node's value vs input value, until the value can be inserted at a free spot.
   # Make sure to return false if we run into the actual value, as binary trees by definition cannot have duplicate values
@@ -55,3 +56,5 @@ insert(root1, 20)
 insert(root1, 40)
 insert(root1, 60)
 insert(root1, 80)
+
+p in_order(root1)
