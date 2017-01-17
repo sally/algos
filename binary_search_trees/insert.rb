@@ -40,3 +40,18 @@ thirty = twenty.insert_right(30)
 
 p insert(root1, 40)
 p thirty.right
+
+# Let us create Tree2:
+  #         50
+  #      /     \
+  #     30      70
+  #    /  \    /  \
+  #  20   40  60   80
+
+root1 = BinaryTreeNode.new(50)
+insert(root1, 30)
+insert(root1, 70)
+insert(root1, 20)
+insert(root1, 40)
+insert(root1, 60)
+insert(root1, 80)
