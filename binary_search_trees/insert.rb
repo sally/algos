@@ -5,21 +5,21 @@ require_relative 'depth_first_traversal_ii'
   # Make sure to return false if we run into the actual value, as binary trees by definition cannot have duplicate values
 
 def insert(root, value)
-  current_node = root
+  raise "Cannot insert into empty binary tree" if root.nil?
 
-  if current_node.value == value
+  if root.value == value
     return false
-  elsif current_node.value < value
-    if current_node.right
-      insert(current_node.right, value)
+  elsif root.value < value
+    if root.right
+      insert(root.right, value)
     else
-      return current_node.insert_right(value)
+      root.insert_right(value)
     end
-  else
-    if current_node.left
-      insert(current_node.left, value)
+  elsif root.value > value
+    if root.left
+      insert(root.left, value)
     else
-      return current_node.insert_left(value)
+      root.insert_left(value)
     end
   end
 end
