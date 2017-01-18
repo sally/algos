@@ -75,3 +75,26 @@ eight4    = seven4.insert_right(8)
 ten4      = eight4.insert_right(10)
 nine4     = ten4.insert_left(9)
 twelve4   = ten4.insert_right(12)
+
+# Tree 5. Non-numeric binary search tree, not balanced
+#        F
+#      /   \
+#     D     J
+#    / \   / \
+#   B   E G   K
+#  / \     \
+# A   C     I
+#          /
+#         H
+
+root5 = BinaryTreeNode.new('F')
+d = root5.insert_left('D')
+j = root5.insert_right('J')
+b = d.insert_left('B')
+e = d.insert_right('E')
+a = b.insert_left('A')
+c = b.insert_right('C')
+g = j.insert_left('G')
+k = j.insert_right('K')
+i = g.insert_right('I')
+h = i.insert_left('H')
