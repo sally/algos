@@ -1,4 +1,4 @@
-# An algorithm to find whether or not a path exists between two vertices A and B
+# An algorithm to find whether or not a path exists between two vertices A and B in an undirected graph
 
 # A graph will be implemented as a dictionary, where the keys are the vertex values and the values are lists that list al of the vertices that the key vertex is connected to.
 
