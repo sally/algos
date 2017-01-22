@@ -141,7 +141,7 @@ def transform_word(dictionary, word1, word2)
 
   exhausted_words = []
 
-  # entries in the priority queue are of the form: {word: 'cat', distance: 0}
+  # entries in the priority queue are of the form: {word: 'cat', distance: 0, previous_word: <word>}
   priority_queue = [nil]
   priority_queue << {word: word1, distance: 0, previous_word: nil}
 
