@@ -31,7 +31,8 @@ def find_path(graph, v1, v2):
     # Create a visisted_from dictionary, that keeps track of whether a vertex was visited or not.
         # If it was visited, then the value is its source node
         # If it was not visited, then the value is False
-    visited_from = { vertex : False for vertex in graph if vertex != v1}
+    visited_from = { vertex: None for vertex in graph }
+    visited_from[v1] = 'start'
 
     # Queue for keeping track of which vertex to check next in breadth first search
     queue = deque([])
@@ -39,29 +40,29 @@ def find_path(graph, v1, v2):
     # Initialize queue with the starting node
     for vertex in graph[v1]:
         # Elements of the queue look like [vertex, source_node]
-        queue.append([vertex, v1])
+        queue.append((vertex, v1))
         visited_from[vertex] = v1
 
     while queue:
         vertex, source = queue.popleft()
-
-        if vertex == v2:
-            path = [source, v2]
-            while visited_from.get(source, False):
-                path.insert(0, visited_from[source])
-                source = visited_from[source]
-            return path
-
         visited_from[vertex] = source
 
+        if vertex == v2:
+            path = [v2]
+            predecessor = source
+
+            while predecessor != 'start':
+                path.append(predecessor)
+                predecessor = visited_from[predecessor]
+            return path[::-1]
 
         for adjacent_vertex in graph[vertex]:
-            if visited_from.get(adjacent_vertex, True):
+            if visited_from[adjacent_vertex]:
                 continue
-            elif vertex in [ vertex_info[0] for vertex_info in queue ]:
+            elif any([ vertex == vertex_info[0] for vertex_info in queue ]):
                 continue
             else:
-                queue.append([adjacent_vertex, vertex])
+                queue.append((adjacent_vertex, vertex))
 
     return False
 
