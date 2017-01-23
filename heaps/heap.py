@@ -1,7 +1,8 @@
 class MinHeap:
     def __init__(self, array = []):
         if array:
-            pass
+            self.heap = []
+            self.make_min_heap(array)
         else:
             self.heap = []
 
@@ -38,6 +39,11 @@ class MinHeap:
 
         return return_value
 
+    def make_min_heap(self, array):
+        for value in array:
+            self.insert(value)
+
+
 minheap = MinHeap()
 minheap.insert(6)
 minheap.insert(13)
@@ -46,3 +52,6 @@ minheap.insert(12)
 minheap.insert(1)
 minheap.insert(11)
 print(minheap.heap)
+
+minheap2 = MinHeap([3,2,-6,4,0])
+print(minheap2.heap)
