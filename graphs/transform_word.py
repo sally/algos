@@ -160,4 +160,7 @@ print(transform_word(['toon', 'poon', 'plee', 'same', 'poie', 'plea', 'plie', 'p
 # Big O analysis:
     # building dictionary graph costs O(N^2) time and O(N^2) space, but only have to do it once
 
-    # dijkstra's algorithm takes O()
+    # dijkstra's algorithm takes O(Elog(V) + Vlog(V)), where V is num vertices and E is num edges.
+        # the E part comes from having to, at worst case, treat every edge -
+            # the log(V) part comes from, having to, for every edge, reorder the priority queue every time
+        # the Vlog(V) part comes from having to (for every vertex) extract the minimum (totaled from the operations for every edge, so just add to Elog(V))
