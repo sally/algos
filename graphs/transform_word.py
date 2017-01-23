@@ -18,4 +18,59 @@
 
 # Idea:
     # Build Python dictionary from given dictionary array to represent graph
-        # Keys will be 
+        # Keys will be words, values will be lists containing the words that the key word has edit distance 1 from
+
+    # Do Dijkstra's algorithm to find the shortest path from word1 to word2:
+        # Initialize another dictionary to keep track of words that are already exhausted
+            # Keys will be words, values will be either False or predecessor
+        # Initialize a priority queue, where the members look like (word, predecessor, distance)
+        # Insert (word1, None) to priority queue
+        # Until priority queue is empty:
+            # Pop the word info from the queue
+            # For each adjacent word:
+
+                # If it is word2:
+                    # initialize path list as [predecessor]
+                    # until exhausted[predecessor] is False,
+                        # append to list
+                    # return reversed list
+
+                # If it's not exhausted:
+                    # Check whether it is in the queue
+                        # If it is AND the current distance+1 is less than distance in the queue
+                            # Delete it from the queue and insert (adjacent word, word, distance+1) into the pqueue and percolate it up
+                    # Otherwise, add it to the queue as (adjacent_word, word, distance+1)
+
+
+def graphify_dictionary(dict):
+    dict_graph = { word: [] for word in dict }
+
+    for i, word in enumerate(dict):
+        rest = dict[i+1:]
+
+        for other_word in rest:
+            if -1 <= len(word) - len(other_word) <= 1:
+                # check if word can be gotten by deleting a letter from other_word
+                print(word, other_word, len(word) - len(other_word))
+                if len(word) - len(other_word) == -1:
+                    for j in range(len(word)):
+                        if word[0:j] + word[j+1:] == other_word:
+                            dict_graph[word].append(other_word)
+                            dict_graph[other_word].append(word)
+                # check if word can be gotten by adding a letter to other_word
+                elif len(word) - len(other_word) == 1:
+                    for j in range(len(other_word)):
+                        if other_word[0:j] + other_word[j+1:] == word:
+                            dict_graph[word].append(other_word)
+                            dict_graph[other_word].append(word)
+                # check if word can be gotten by changing a letter of other_word
+                else:
+                    for j in range(len(word)):
+                        if word[0:j] + word[j+1:] == other_word[0:j] + other_word[j+1:]:
+                            dict_graph[word].append(other_word)
+                            dict_graph[other_word].append(word)
+
+    return dict_graph
+
+dict = ['cat', 'bat', 'bet', 'bed', 'at', 'ad', 'ed']
+print(graphify_dictionary(dict))
