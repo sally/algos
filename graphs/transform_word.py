@@ -79,6 +79,32 @@ def percolate_up_by_distance(pqueue, index):
         pqueue[int((index-1)/2)], pqueue[index] = pqueue[index], pqueue[int((index-1)/2)]
         index = int((index-1)/2)
 
+def percolate_down_by_distance(pqueue, index):
+    while index < len(pqueue) and ((index*2 + 1 < len(pqueue) and pqueue[index][1] > pqueue[index*2 + 1][1]) or (index*2 + 2 < len(pqueue) and pqueue[index][1] > pqueue[index*2 + 2][1])):
+        if index*2 + 1 < len(pqueue) and index*2 + 2 < len(pqueue):
+            if pqueue[index*2 + 1][1] <= pqueue[index*2 + 2][1]:
+                replacement_index = index*2 + 1
+            else:
+                replacement_index = index*2 + 2
+        elif index*2 + 1 < len(pqueue) and index*2 + 2 >= len(pqueue):
+            replacement_index = index*2 + 1
+        else:
+            replacement_index = index*2 + 2
+
+        pqueue[index], pqueue[replacement_index] = pqueue[replacement_index], pqueue[index]
+        index = replacement_index
+
+def extract_min(pqueue):
+    return_value = pqueue[0]
+
+    pqueue[0], pqueue[-1] = pqueue[-1], pqueue[0]
+
+    pqueue.pop()
+
+    percolate_down_by_distance(pqueue, 0)
+
+    return return_value
+
 def transform_word(dictionary, w1, w2):
     graph = graphify_dictionary(dictionary)
 
@@ -89,7 +115,7 @@ def transform_word(dictionary, w1, w2):
     pqueue.append((w1, 0, 'start'))
 
     while pqueue:
-        word, distance, predecessor = pqueue.pop(0)
+        word, distance, predecessor = extract_min(pqueue)
 
         for adjacent_word in graph[word]:
             # add logic for if word is actually equal to w2
@@ -130,3 +156,8 @@ print(transform_word(['toon', 'poon', 'plee', 'same', 'poie', 'plea', 'plie', 'p
 
 print(transform_word(['toon', 'poon', 'plee', 'same', 'poie', 'plea', 'plie', 'poin'], 'plee', 'poie'))
 # => ["plee", "plie", "poie"]
+
+# Big O analysis:
+    # building dictionary graph costs O(N^2) time and O(N^2) space, but only have to do it once
+
+    # dijkstra's algorithm takes O()
