@@ -22,7 +22,7 @@ A **min heap** is a binary tree that satisfies the following properties:
 
 * [About indices in array version of heap implementation](http://stackoverflow.com/questions/22900388/why-in-a-heap-implemented-by-array-the-index-0-is-left-unused)
 
-|             | Root at 0 | Root at1 |
+|             | Root at 0 | Root at 1 |
 |-------------|-----------|----------|
 | Left child  | i*2 + 1   | i*2      |
 | Right child | i*2 + 2   | i*2 + 1  |
