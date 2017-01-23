@@ -1,3 +1,5 @@
+# Reference: http://www.geeksforgeeks.org/find-same-contacts-in-a-list-of-contacts/
+
 # Given a list of contacts containing username, email, and phone number in any order, identify the same contacts (i.e. the same peson having many different contact entries) and output the same contacts together.
 
 # Notes:
