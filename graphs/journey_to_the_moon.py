@@ -11,3 +11,18 @@
 # Output: 4
 
 # Explanation: Persons numbered 0 and 1 belong to the same country, and those numbered 2 and 3 belong to the same country. So the UN can choose one person out of 0 and 1, and another person out of 2 and 3. Hence, the number of ways of choosing a pair of astronauts is 4.
+
+# Idea:
+    # Build a graph represented as such. Keys are vertices, values are vertices that the key vertex has an edge to.
+    # Iterate through the input array of pair tuples, adding edges for the pairs.
+
+    # Do a breadth first search through the graph. We keep track of the connected components.
+
+from collections import defaultdict
+
+class Graph:
+    def __init__(self):
+        self.graph = defaultdict(list)
+
+    def add_edge(self, v1, v2):
+        self.graph[v1].append(v2)
