@@ -59,7 +59,7 @@ def find_path(graph, v1, v2):
         for adjacent_vertex in graph[vertex]:
             if visited_from[adjacent_vertex]:
                 continue
-            elif vertex in [ vertex_info[0] for vertex_info in queue ]:
+            elif any([ vertex == vertex_info[0] for vertex_info in queue ]):
                 continue
             else:
                 queue.append((adjacent_vertex, vertex))
