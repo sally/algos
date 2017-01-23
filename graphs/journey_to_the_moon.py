@@ -19,6 +19,7 @@
     # Do a breadth first search through the graph. We keep track of the connected components.
 
 from collections import defaultdict
+from collections import deque
 
 class Graph:
     def __init__(self):
@@ -26,3 +27,52 @@ class Graph:
 
     def add_edge(self, v1, v2):
         self.graph[v1].append(v2)
+
+    def build_graph(self, pairs):
+        for pair in pairs:
+            self.add_edge(pair[0], pair[1])
+            self.add_edge(pair[1], pair[0])
+
+    def get_connected_components(self):
+        self.visited = { vertex: False for vertex in self.graph }
+        self.connected_components = []
+
+        for vertex in self.graph:
+            if not self.visited[vertex]:
+                self.bfs(vertex)
+
+        return self.connected_components
+
+    def bfs(self, vertex):
+        component = []
+        queue = deque([vertex])
+
+        while queue:
+            vertex = queue.popleft()
+            self.visited[vertex] = True
+            component.append(vertex)
+            for adjacent_vertex in self.graph[vertex]:
+                if not self.visited[adjacent_vertex]:
+                    queue.append(adjacent_vertex)
+
+        self.connected_components.append(component)
+
+    def get_combinations(self):
+        self.get_connected_components()
+
+        combinations = 0
+
+        for k, component in enumerate(self.connected_components):
+            combinations += len(component) * sum(map(len, self.connected_components[k+1:]))
+
+        return combinations
+
+
+astronauts = Graph()
+astronauts.build_graph([(0,1), (2,3)])
+print(astronauts.graph)
+# => defaultdict(<type 'list'>, {0: [1], 1: [0], 2: [3], 3: [2]})
+print(astronauts.get_connected_components())
+# => [[0, 1], [2, 3]]
+print(astronauts.get_combinations())
+# => 4
