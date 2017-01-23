@@ -1,3 +1,5 @@
+# Reference: http://www.geeksforgeeks.org/find-shortest-distance-guard-bank/
+
 # Given a matrix that is filled with 'O', 'G', and 'W' where 'O' represents open space, 'G' represents guards, and 'W' represents walls in a bank, replace all of the 'O's in a matrix with their shortest distance from a guard, without being able to go through any walls.
 
 # Also, replace the guards with 0 and walls with -1 in the output matrix.
