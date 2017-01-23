@@ -90,15 +90,11 @@ def transform_word(dictionary, w1, w2):
 
     while pqueue:
         word, distance, predecessor = pqueue.pop(0)
-        print(word, distance, predecessor)
-        print(exhausted)
 
         for adjacent_word in graph[word]:
             # add logic for if word is actually equal to w2
             if adjacent_word == w2:
                 path = [w2, word]
-                print(exhausted['bat'])
-                print(exhausted['cat'])
                 while predecessor != 'start':
                     path.append(predecessor)
                     predecessor = exhausted[predecessor]
@@ -117,8 +113,7 @@ def transform_word(dictionary, w1, w2):
                     percolate_up_by_distance(pqueue, len(pqueue) - 1)
 
         exhausted[word] = predecessor
-        print(pqueue)
-
+        
     return "No path found"
 
 print(transform_word(['cat', 'bat', 'bet', 'bed', 'at', 'ad', 'ed'], 'cat', 'bed'))
