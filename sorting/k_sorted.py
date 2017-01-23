@@ -12,6 +12,10 @@
         # add element at position i + k + 2 to heap
 
 # Temporary work around for relative import for Python
+import os
+import sys
+parent_dir_name = os.path.dirname(os.path.dirname(os.path.realpath(__file__)))
+sys.path.append(parent_dir_name + "/your_dir")
 from heap import MinHeap
 
 def sort_k_sorted(array,k):
@@ -19,7 +23,6 @@ def sort_k_sorted(array,k):
     min_heap = MinHeap(array[:k+2])
 
     for i in range(len(array)):
-        print(min_heap.heap)
         sorted.append(min_heap.extract_min())
         if i+k+2 < len(array):
             min_heap.insert(array[i+k+2])
@@ -27,3 +30,4 @@ def sort_k_sorted(array,k):
     return sorted
 
 print(sort_k_sorted([2, 6, 3, 12, 56, 8], 2))
+# => Returns [2, 3, 6, 8, 12, 56]
