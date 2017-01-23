@@ -59,7 +59,7 @@ def graphify_dictionary(dict):
                 # check if word can be gotten by adding a letter to other_word
                 elif len(word) - len(other_word) == 1:
                     for j in range(len(other_word)):
-                        if other_word[0:j] + other_word[j+1:] == word:
+                        if word[0:j] + word[j+1:] == other_word:
                             dict_graph[word].append(other_word)
                             dict_graph[other_word].append(word)
                 # check if word can be gotten by changing a letter of other_word
@@ -113,7 +113,20 @@ def transform_word(dictionary, w1, w2):
                     percolate_up_by_distance(pqueue, len(pqueue) - 1)
 
         exhausted[word] = predecessor
-        
+
     return "No path found"
 
 print(transform_word(['cat', 'bat', 'bet', 'bed', 'at', 'ad', 'ed'], 'cat', 'bed'))
+# => ["cat", "bat", "bet", "bed"]
+
+print(transform_word(['cat', 'bat', 'bed', 'at', 'ad', 'ed'], 'cat', 'bed'))
+# => ["cat", "at", "ad", "ed", "bed"]
+
+print(transform_word(['cat', 'bat', 'bed', 'ad', 'ed'], 'cat', 'bed'))
+# => []
+
+print(transform_word(['toon', 'poon', 'plee', 'same', 'poie', 'plea', 'plie', 'poin'], 'toon', 'plea'))
+# => ["toon", "poon", "poin", "poie", "plie", "plee", "plea"]
+
+print(transform_word(['toon', 'poon', 'plee', 'same', 'poie', 'plea', 'plie', 'poin'], 'plee', 'poie'))
+# => ["plee", "plie", "poie"]
