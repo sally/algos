@@ -51,7 +51,6 @@ def graphify_dictionary(dict):
         for other_word in rest:
             if -1 <= len(word) - len(other_word) <= 1:
                 # check if word can be gotten by deleting a letter from other_word
-                print(word, other_word, len(word) - len(other_word))
                 if len(word) - len(other_word) == -1:
                     for j in range(len(word)):
                         if word[0:j] + word[j+1:] == other_word:
@@ -74,3 +73,52 @@ def graphify_dictionary(dict):
 
 dict = ['cat', 'bat', 'bet', 'bed', 'at', 'ad', 'ed']
 print(graphify_dictionary(dict))
+
+def percolate_up_by_distance(pqueue, index):
+    while index > 0 and pqueue[int((index-1)/2)][1] > pqueue[index][1]:
+        pqueue[int((index-1)/2)], pqueue[index] = pqueue[index], pqueue[int((index-1)/2)]
+        index = int((index-1)/2)
+
+def transform_word(dictionary, w1, w2):
+    graph = graphify_dictionary(dictionary)
+
+    exhausted = { word: False for word in dictionary }
+
+    pqueue = []
+
+    pqueue.append((w1, 0, 'start'))
+
+    while pqueue:
+        word, distance, predecessor = pqueue.pop(0)
+        print(word, distance, predecessor)
+        print(exhausted)
+
+        for adjacent_word in graph[word]:
+            # add logic for if word is actually equal to w2
+            if adjacent_word == w2:
+                path = [w2, word]
+                print(exhausted['bat'])
+                print(exhausted['cat'])
+                while predecessor != 'start':
+                    path.append(predecessor)
+                    predecessor = exhausted[predecessor]
+                return path[::-1]
+
+            if not exhausted[adjacent_word]:
+                if adjacent_word in [adjacent_word_info[0] for adjacent_word_info in pqueue]:
+                    adjacent_word_info = next(info for info in pqueue if info[0] == adjacent_word)
+
+                    if adjacent_word_info[1] > distance + 1:
+                        adjacent_word_info_index = pqueue.index(adjacent_word_info)
+                        pqueue = (adjacent_word, distance+1, word)
+                        percolate_up_by_distance(pqueue, adjacent_word_info_index)
+                else:
+                    pqueue.append((adjacent_word, distance+1, word))
+                    percolate_up_by_distance(pqueue, len(pqueue) - 1)
+
+        exhausted[word] = predecessor
+        print(pqueue)
+
+    return "No path found"
+
+print(transform_word(['cat', 'bat', 'bet', 'bed', 'at', 'ad', 'ed'], 'cat', 'bed'))
