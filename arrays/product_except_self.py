@@ -22,3 +22,23 @@
         # ...
 
     # Return created array
+
+def product_except_self(array):
+    return_array = []
+
+    multiplier = 1
+
+    for value in array:
+        return_array.append(multiplier)
+        multiplier = multiplier * value
+
+    multiplier = 1
+
+    for k in range(len(array)-1,-1,-1):
+        return_array[k] = return_array[k] * multiplier
+        multiplier = multiplier * array[k]
+
+    return return_array
+
+print(product_except_self([1,2,3,4]))
+[24, 12, 8, 6]
