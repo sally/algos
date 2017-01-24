@@ -10,13 +10,15 @@
 # Could you solve it with constant space complexity? (Note: The output array does not count as extra space for the purpose of space complexity analysis.)
 
 # Idea: Do the multiplication in 2 passes.
-    # First passes, go forward. Initialize a multiplier at 1.
-        # 0: Set multiplier to index 0 element and pass.
-        # 1: Multiply element by multiplier, set multiplier to index 1.
-        # 2: Multiply element by multiplier, set multiplier to index 2.
+    # Initialize an array to return.
+    # First passes, go forward through input array. Initialize a multiplier at 1.
+        # 0: Push 1 to return array. Set multiplier to index 0 of return array.
+        # 1: Push multiplier * array[1] to return array. Set multiplier to index 1 of return array.
         # ...
 
-    # Second pass: Go backward. Initialize multiplier back to 1.
-        # n-1: Set multiplier to index n-1 element and pass.
-        # n-2: Multiply element by multiplier, set multiplier by index n-2.
+    # Second pass: Go backward through input array.
+        # n-1: Set multiplier to n-1 element of array and pass.
+        # n-2: Set n-2 element of return array as multiplier * n-2 element of return array. Set multiplier to multiplier*n-2 element of input array and pass.
         # ...
+
+    # Return created array
