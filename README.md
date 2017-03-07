@@ -12,9 +12,9 @@ At the root level, problems are generally separated into the data structures inv
 
 The problems were mostly procured from the following places:
 
-  * HackerRank
-  * InterviewCake
-  * LeetCode
+  * [HackerRank](https://www.hackerrank.com/)
+  * [InterviewCake](https://www.interviewcake.com/)
+  * [LeetCode](https://leetcode.com/)
   * Cracking The Coding Interview
-  * Codility
-  * GeeksForGeeks
+  * [Codility](https://codility.com/)
+  * [GeeksForGeeks](https://geeksforgeeks.org/)
