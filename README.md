@@ -17,4 +17,4 @@ The problems were mostly procured from the following places:
   * [LeetCode](https://leetcode.com/)
   * Cracking The Coding Interview
   * [Codility](https://codility.com/)
-  * [GeeksForGeeks](https://geeksforgeeks.org/)
+  * [GeeksForGeeks](http://www.geeksforgeeks.org/)
