@@ -15,6 +15,6 @@ The problems were mostly procured from the following places:
   * [HackerRank](https://www.hackerrank.com/)
   * [InterviewCake](https://www.interviewcake.com/)
   * [LeetCode](https://leetcode.com/)
-  * Cracking The Coding Interview
+  * [Cracking The Coding Interview 6th edition](https://www.amazon.com/Cracking-Coding-Interview-Programming-Questions/dp/0984782850)
   * [Codility](https://codility.com/)
   * [GeeksForGeeks](http://www.geeksforgeeks.org/)
