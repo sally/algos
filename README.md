@@ -8,7 +8,7 @@ Record of drills for algorithms/data structures.
 
 At the root level, problems are generally separated into the data structures involved in the solution (besides the `dynamic_programming`, `misc`, and `notes` folders.
 
-Feel free also to take a look at [my accountability group's algorithm repo](https://www.github.com/sally/algoccountabilibuddies), which is a bit more organized albeit having less content. (This repo should also be considered inactive, beginning Feb 2017 onward.)
+Feel free also to take a look at [my accountability group's algorithm repo](https://www.github.com/sally/algoccountabilibuddies), which is a bit more organized albeit having less content. (This repo should also be considered inactive, beginning Feb 2017 onward.) However, if you submit a pull request with a solution for one of the algorithms (or adding an algorithm), I'll receive a notification and will be sure to take a look. (◕‿◕✿)
 
 ## Sources
 
